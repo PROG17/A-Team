@@ -1,0 +1,7 @@
+C:\Users\stefa\Desktop\Prog17\Inlämning2\Suduko\Suduko\bin\Debug\Suduko.exe.config
+C:\Users\stefa\Desktop\Prog17\Inlämning2\Suduko\Suduko\bin\Debug\Suduko.exe
+C:\Users\stefa\Desktop\Prog17\Inlämning2\Suduko\Suduko\bin\Debug\Suduko.pdb
+C:\Users\stefa\Desktop\Prog17\Inlämning2\Suduko\Suduko\obj\Debug\Suduko.csprojResolveAssemblyReference.cache
+C:\Users\stefa\Desktop\Prog17\Inlämning2\Suduko\Suduko\obj\Debug\Suduko.csproj.CoreCompileInputs.cache
+C:\Users\stefa\Desktop\Prog17\Inlämning2\Suduko\Suduko\obj\Debug\Suduko.exe
+C:\Users\stefa\Desktop\Prog17\Inlämning2\Suduko\Suduko\obj\Debug\Suduko.pdb
