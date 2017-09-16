@@ -8,6 +8,8 @@ namespace Suduko
 {
     class Program
     {
+        //nisse är dum
+        //test
         //skapar en ny instans av Createboard
         public static CreateBoard test = new CreateBoard();
         public static int[,] sucodoArray = new int[9, 9];
@@ -20,7 +22,7 @@ namespace Suduko
             ShowBoard.PrintOutBoard(sucodoArray);
             Console.ReadLine();
             
-            
+
         }
     }
 }
