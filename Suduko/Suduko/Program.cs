@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Net.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,21 +10,25 @@ namespace Suduko
 {
     class Program
     {
-        //nisse är dum
-        //test
-        //skapar en ny instans av Createboard
-        public static CreateBoard test = new CreateBoard();
+        // 2d arrayen som vi sparar sukodon i 
         public static int[,] sucodoArray = new int[9, 9];
         static void Main(string[] args)
         {
-            string sucodoNumbers = "003020600900305001001806400008102900700000008006708200002609500800203009005010300";
-            CreateBoard.SortToArray(sucodoNumbers);
-            ShowBoard.PrintOutBoard(sucodoArray);
-            CalculateMissingNumbers.Solv();
-            ShowBoard.PrintOutBoard(sucodoArray);
-            Console.ReadLine();
-            
 
+            //Strängen med sukudon vi ska läsa
+            string sucodoNumbers = "003020600900305001001806400008102900700000008006708200002609500800203009005010300";
+            // Gör om strängen till en 2d array
+            CreateBoard.SortToArray(sucodoNumbers);
+            //skriver ut sukodon från arrayen som den ska visas
+            ShowBoard.PrintOutBoard(sucodoArray);
+            // Försöker att byta ut 0or i arrayen till rätt nummer 
+            CalculateMissingNumbers.Solv();
+            Console.Clear();
+            ShowBoard.PrintOutBoard(sucodoArray);
+            Console.WriteLine("Solved!");
+
+
+            Console.ReadLine();
         }
     }
 }
