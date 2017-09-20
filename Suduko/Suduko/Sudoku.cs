@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace SudokuMarran
+namespace Sudoku
 {
     public class Sudoku
     {

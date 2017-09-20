@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SudokuMarran
+namespace Sudoku
 {
     class Program
     {
