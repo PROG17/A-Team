@@ -42,11 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculateMissingNumbers.cs" />
-    <Compile Include="CreateBoard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShowBoard.cs" />
+    <Compile Include="Sudoku.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
