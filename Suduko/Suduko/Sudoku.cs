@@ -32,7 +32,6 @@ namespace Sudoku
         public string BoardAsText { get { return GetFormatedBoard(); } }
         private int[,] sudokuArray = new int[9, 9];
         private List<int> numbers = new List<int>();
-
         /// <summary>
         /// Konstruktor för spelet
         /// </summary>
@@ -41,7 +40,6 @@ namespace Sudoku
         {
             CreateBoard(inputNumbers);
         }
-
         /// <summary>
         /// Lägger till siffrorna till listan
         /// </summary>
@@ -50,7 +48,6 @@ namespace Sudoku
             numbers.Clear();
             numbers.AddRange(Enumerable.Range(1, 9));
         }
-
         /// <summary>
         /// Löser hela sudokun
         /// </summary>
@@ -69,6 +66,8 @@ namespace Sudoku
                     //håller koll på cilken col vi är på
                     for (int col = 0; col < 9; col++)
                     {
+                        int rowChecker = row;
+                        int colChecker = col;
                         AddNumbersToArray();
 
 
@@ -96,53 +95,29 @@ namespace Sudoku
                                 }
                             }
                             //kollar boxen col 
-                            while (test)
+                            while (colChecker % 3 != 0)
                             {
-                                //sätter rowCheck och colCheck till där man är
-                                int rowCheck = row, colCheck = col;
-                                //sätter alltid rowMin och colMin till row för det är det lägsta om det är %3
-                                int rowMin = row, rowMax = 0, colMin = col, colMax = 0;
-                                //lägsta rad
-                                // kollar lägsta rowmin om inte det redan ä det
-                                while ((rowCheck % 3) != 0)
+                                colChecker--;
+                            }
+                            while (rowChecker % 3 != 0)
+                            {
+                                rowChecker--;
+                            }
+                            for (int j = 0; j < 3; j++)
+                            {
+                                for (int i = 0; i < 3; i++)
                                 {
-                                    rowCheck--;
-                                    rowMin = rowCheck;
-                                }
-                                //högsta rad
-                                //kollar högsta row i boxen (för att starta den så startar den från lägsta som vi räkna ut innan +1 annars så är den automatiskt 0;
-                                while (((rowCheck + 1) % 3) != 0)
-                                {
-                                    rowCheck++;
-                                    rowMax = rowCheck;
-                                }
-                                //lägsta Col
-                                while ((colCheck % 3) != 0)
-                                {
-                                    colCheck--;
-                                    colMin = colCheck;
-                                }
-
-                                //högsta col
-                                while (((colCheck + 1) % 3) != 0)
-                                {
-                                    colCheck++;
-                                    colMax = colCheck;
-                                }
-
-                                //Håller koll på vilken rad vi är i arrayen
-                                for (int y = rowMin; y < (rowMax + 1); y++)
-                                {
-                                    //håller koll på cilken col vi är på
-                                    for (int x = colMin; x < (colMax + 1); x++)
+                                    if (sudokuArray[rowChecker, colChecker] != 0)
                                     {
-                                        //kollar om siffran finns i sifror
-                                        if (numbers.Contains(sudokuArray[y, x]))
+                                        if (numbers.Contains(sudokuArray[rowChecker, colChecker]))
                                         {
-                                            numbers.Remove(sudokuArray[y, x]);
+                                            numbers.Remove(sudokuArray[rowChecker, colChecker]);
                                         }
                                     }
+                                    colChecker++;
                                 }
+                                colChecker = colChecker - 3; rowChecker++;
+
                                 //Kollar om det är en kvar i siffror för då är det den.
                                 if (numbers.Count == 1)
                                 {
@@ -190,7 +165,6 @@ namespace Sudoku
             }
             return sb.ToString();
         }
-
         /// <summary>
         /// Skapar sudoku matrisen
         /// </summary>

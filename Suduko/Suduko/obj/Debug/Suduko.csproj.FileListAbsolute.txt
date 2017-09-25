@@ -12,3 +12,10 @@ C:\Users\stefa\source\repos\A-Team\Suduko\Suduko\obj\Debug\Suduko.csprojResolveA
 C:\Users\stefa\source\repos\A-Team\Suduko\Suduko\obj\Debug\Suduko.csproj.CoreCompileInputs.cache
 C:\Users\stefa\source\repos\A-Team\Suduko\Suduko\obj\Debug\Suduko.exe
 C:\Users\stefa\source\repos\A-Team\Suduko\Suduko\obj\Debug\Suduko.pdb
+C:\Users\chryd\Source\Repos\A-Team\Suduko\Suduko\bin\Debug\Suduko.exe.config
+C:\Users\chryd\Source\Repos\A-Team\Suduko\Suduko\bin\Debug\Suduko.exe
+C:\Users\chryd\Source\Repos\A-Team\Suduko\Suduko\bin\Debug\Suduko.pdb
+C:\Users\chryd\Source\Repos\A-Team\Suduko\Suduko\obj\Debug\Suduko.csprojResolveAssemblyReference.cache
+C:\Users\chryd\Source\Repos\A-Team\Suduko\Suduko\obj\Debug\Suduko.csproj.CoreCompileInputs.cache
+C:\Users\chryd\Source\Repos\A-Team\Suduko\Suduko\obj\Debug\Suduko.exe
+C:\Users\chryd\Source\Repos\A-Team\Suduko\Suduko\obj\Debug\Suduko.pdb
