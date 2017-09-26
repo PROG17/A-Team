@@ -11,6 +11,7 @@ namespace Sudoku
     {
         /// <summary>
         /// Kollar om nuvarande spelet är löst
+        /// test ändrar
         /// </summary>
         public bool IsGameSolved
         {
