@@ -11,8 +11,6 @@ namespace Sudoku
     {
         /// <summary>
         /// Kollar om nuvarande spelet är löst
-        /// test ändrar
-        /// ändring infen
         /// </summary>
         public bool IsGameSolved
         {
@@ -34,6 +32,7 @@ namespace Sudoku
         public string BoardAsText { get { return GetFormatedBoard(); } }
         private int[,] sudokuArray = new int[9, 9];
         private List<int> numbers = new List<int>();
+
         /// <summary>
         /// Konstruktor för spelet
         /// </summary>
@@ -42,23 +41,24 @@ namespace Sudoku
         {
             CreateBoard(inputNumbers);
         }
+
         /// <summary>
         /// Lägger till siffrorna till listan
         /// </summary>
-        private void AddNumbersToArray()
+        private void AddNumbersToList()
         {
             numbers.Clear();
             numbers.AddRange(Enumerable.Range(1, 9));
         }
+
         /// <summary>
         /// Löser hela sudokun
         /// </summary>
         public void Solve()
         {
-
             bool test = true;
-
             bool runProgram = true;
+
             //Håller koll på vilken rad vi är i arrayen
             while (runProgram)
             {
@@ -70,32 +70,14 @@ namespace Sudoku
                     {
                         int rowChecker = row;
                         int colChecker = col;
-                        AddNumbersToArray();
+                        AddNumbersToList();
 
-
-                        // Kollar om det är en nolla på cell platsen 
-                        if (sudokuArray[row, col] == 0)
-
+                        if (CellContainsZero(row, col))
                         {
                             test = true;
-                            //kollar varje cell i raden      
-                            for (int col2 = 0; col2 < 9; col2++)
-                            {
+                            UpdateSolvedNumbersCurrentRow(row, col);
+                            UpdateSolvedNumbersCurrentCol(row, col);
 
-                                if (numbers.Contains(sudokuArray[row, col2]))
-                                {
-                                    numbers.Remove(sudokuArray[row, col2]);
-                                }
-
-                            }
-                            //kollar varje col cell
-                            for (int row2 = 0; row2 < 9; row2++)
-                            {
-                                if (numbers.Contains(sudokuArray[row2, col]))
-                                {
-                                    numbers.Remove(sudokuArray[row2, col]);
-                                }
-                            }
                             //kollar boxen col 
                             while (colChecker % 3 != 0)
                             {
@@ -119,7 +101,7 @@ namespace Sudoku
                                     colChecker++;
                                 }
                                 colChecker = colChecker - 3; rowChecker++;
-
+                               
                                 //Kollar om det är en kvar i siffror för då är det den.
                                 if (numbers.Count == 1)
                                 {
@@ -134,6 +116,41 @@ namespace Sudoku
                 }
             }
         }
+
+        public bool CellContainsZero(int row, int col)
+        {            
+            if(sudokuArray[row, col] == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void UpdateSolvedNumbersCurrentRow(int rowFixed, int colFixed)
+        {
+            for (int col = 0; col < 9; col++)
+            {
+                if (numbers.Contains(sudokuArray[rowFixed, col]))
+                {
+                    numbers.Remove(sudokuArray[rowFixed, col]);
+                }
+            }
+        }
+
+        public void UpdateSolvedNumbersCurrentCol(int rowFixed, int colFixed)
+        {
+            for (int row = 0; row < 9; row++)
+            {
+                if (numbers.Contains(sudokuArray[row, colFixed]))
+                {
+                    numbers.Remove(sudokuArray[row, colFixed]);
+                }
+            }
+        }
+
         /// <summary>
         /// Formaterar brädan som en sträng
         /// </summary>

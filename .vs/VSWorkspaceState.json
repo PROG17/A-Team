@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Suduko"
+    "\\Suduko",
+    "\\Suduko\\Suduko"
   ],
-  "SelectedNode": "\\Suduko\\Suduko.sln",
+  "SelectedNode": "\\Suduko\\Suduko\\Suduko.csproj",
   "PreviewInSolutionExplorer": false
 }
