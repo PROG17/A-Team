@@ -26,3 +26,10 @@ C:\Users\Olivia\Source\Repos\A-Team\Suduko\Suduko\obj\Debug\Suduko.csprojResolve
 C:\Users\Olivia\Source\Repos\A-Team\Suduko\Suduko\obj\Debug\Suduko.csproj.CoreCompileInputs.cache
 C:\Users\Olivia\Source\Repos\A-Team\Suduko\Suduko\obj\Debug\Suduko.exe
 C:\Users\Olivia\Source\Repos\A-Team\Suduko\Suduko\obj\Debug\Suduko.pdb
+C:\Users\Max\Source\Repos\A-Team\Suduko\A-Team\Suduko\Suduko\bin\Debug\Suduko.exe.config
+C:\Users\Max\Source\Repos\A-Team\Suduko\A-Team\Suduko\Suduko\bin\Debug\Suduko.exe
+C:\Users\Max\Source\Repos\A-Team\Suduko\A-Team\Suduko\Suduko\bin\Debug\Suduko.pdb
+C:\Users\Max\Source\Repos\A-Team\Suduko\A-Team\Suduko\Suduko\obj\Debug\Suduko.csprojResolveAssemblyReference.cache
+C:\Users\Max\Source\Repos\A-Team\Suduko\A-Team\Suduko\Suduko\obj\Debug\Suduko.csproj.CoreCompileInputs.cache
+C:\Users\Max\Source\Repos\A-Team\Suduko\A-Team\Suduko\Suduko\obj\Debug\Suduko.exe
+C:\Users\Max\Source\Repos\A-Team\Suduko\A-Team\Suduko\Suduko\obj\Debug\Suduko.pdb

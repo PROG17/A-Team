@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace Sudoku
+namespace SudokuMarran
 {
     public class Sudoku
     {
@@ -31,53 +31,77 @@ namespace Sudoku
         }
         public string BoardAsText { get { return GetFormatedBoard(); } }
         private int[,] sudokuArray = new int[9, 9];
-        private List<int> numbers = new List<int>();
 
-        /// <summary>
-        /// Konstruktor för spelet
-        /// </summary>
-        /// <param name="inputNumbers">Soduko spelet i sträng format</param>
-        public Sudoku(string inputNumbers)
+        public Sudoku(string board)
         {
-            CreateBoard(inputNumbers);
+            for (int i = 0; i < sudokuArray.Length; i++)
+            {
+                int row = i / 9;
+                int col = i % 9;
+                {
+                    sudokuArray[row, col] = int.Parse(board.Substring(i, 1));
+                }
+            }
         }
-
+        private List<int> numbers = new List<int>();
+        public Sudoku(int[,] recursiveBoard)
+        {
+            for (int row = 0; row < 9; row++)
+            {
+                for (int col = 0; col < 9; col++)
+                {
+                    sudokuArray[row, col] = recursiveBoard[row, col];
+                }
+            }
+        }
         /// <summary>
         /// Lägger till siffrorna till listan
         /// </summary>
-        private void AddNumbersToList()
+        private void AddNumbersToArray()
         {
             numbers.Clear();
             numbers.AddRange(Enumerable.Range(1, 9));
         }
-
         /// <summary>
         /// Löser hela sudokun
         /// </summary>
-        public void Solve()
+        public bool Solve()
         {
-            bool test = true;
-            bool runProgram = true;
-
+            int Row = 0;
+            int Col = 0;
+            bool runProgram;
             //Håller koll på vilken rad vi är i arrayen
-            while (runProgram)
+            do
             {
                 runProgram = false;
                 for (int row = 0; row < 9; row++)
                 {
-                    //håller koll på cilken col vi är på
+                    //håller koll på vilken col vi är på
                     for (int col = 0; col < 9; col++)
                     {
                         int rowChecker = row;
                         int colChecker = col;
-                        AddNumbersToList();
 
-                        if (CellContainsZero(row, col))
+                        // Kollar om det är en nolla på cell platsen 
+                        if (sudokuArray[row, col] == 0)
                         {
-                            test = true;
-                            UpdateSolvedNumbersCurrentRow(row, col);
-                            UpdateSolvedNumbersCurrentCol(row, col);
-
+                            AddNumbersToArray();
+                            //kollar varje cell i raden      
+                            for (int col2 = 0; col2 < 9; col2++)
+                            {
+                                if (numbers.Contains(sudokuArray[row, col2]))
+                                {
+                                    numbers.Remove(sudokuArray[row, col2]);
+                                }
+                            }
+                            //kollar varje col cell
+                            for (int row2 = 0; row2 < 9; row2++)
+                            {
+                                if (numbers.Contains(sudokuArray[row2, col]))
+                                {
+                                    numbers.Remove(sudokuArray[row2, col]);
+                                }
+                            }
                             //kollar boxen col 
                             while (colChecker % 3 != 0)
                             {
@@ -91,66 +115,59 @@ namespace Sudoku
                             {
                                 for (int i = 0; i < 3; i++)
                                 {
-                                    if (sudokuArray[rowChecker, colChecker] != 0)
+                                    if (numbers.Contains(sudokuArray[rowChecker, colChecker]))
                                     {
-                                        if (numbers.Contains(sudokuArray[rowChecker, colChecker]))
-                                        {
-                                            numbers.Remove(sudokuArray[rowChecker, colChecker]);
-                                        }
+                                        numbers.Remove(sudokuArray[rowChecker, colChecker]);
                                     }
                                     colChecker++;
                                 }
                                 colChecker = colChecker - 3; rowChecker++;
-                               
-                                //Kollar om det är en kvar i siffror för då är det den.
-                                if (numbers.Count == 1)
-                                {
-                                    sudokuArray[row, col] = numbers[0];
-                                    runProgram = true;
-                                }
                                 //För att skriva ut på skärmen steg för steg
-                                test = false;
+                            }
+                            //Kollar om det är en kvar i siffror för då är det den
+                            if (numbers.Count == 1)
+                            {
+                                sudokuArray[row, col] = numbers[0];
+                                runProgram = true;
+                            }
+                            else if (numbers.Count == 0)
+                            {
+                                //Ifall spelet aldrig går att lösa
+                                return false;
+                            }
+                            else
+                            {
+                                Row = row;
+                                Col = col;
                             }
                         }
                     }
                 }
-            }
-        }
+            } while (runProgram);
 
-        public bool CellContainsZero(int row, int col)
-        {            
-            if(sudokuArray[row, col] == 0)
+            if (!IsGameSolved)
             {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+                List<int> recursiveValues = numbers.ToList();
 
-        public void UpdateSolvedNumbersCurrentRow(int rowFixed, int colFixed)
-        {
-            for (int col = 0; col < 9; col++)
-            {
-                if (numbers.Contains(sudokuArray[rowFixed, col]))
+                for (int i = 0; i < recursiveValues.Count; i++)
                 {
-                    numbers.Remove(sudokuArray[rowFixed, col]);
+                    sudokuArray[Row, Col] = recursiveValues[i];
+                    Sudoku game = new Sudoku(sudokuArray);
+                    var isSolved = game.Solve();
+
+                    if (!isSolved)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        sudokuArray = game.sudokuArray;
+                        return true;
+                    }
                 }
             }
+            return IsGameSolved;
         }
-
-        public void UpdateSolvedNumbersCurrentCol(int rowFixed, int colFixed)
-        {
-            for (int row = 0; row < 9; row++)
-            {
-                if (numbers.Contains(sudokuArray[row, colFixed]))
-                {
-                    numbers.Remove(sudokuArray[row, colFixed]);
-                }
-            }
-        }
-
         /// <summary>
         /// Formaterar brädan som en sträng
         /// </summary>
@@ -191,18 +208,14 @@ namespace Sudoku
         private void CreateBoard(string inputNumbers)
         {
             int count = 0;
-
             for (int row = 0; row < 9; row++)
             {
                 for (int col = 0; col < 9; col++)
                 {
-
                     sudokuArray[row, col] = (int)char.GetNumericValue(inputNumbers[count]);
                     count++;
-
                 }
             }
         }
     }
 }
-
