@@ -26,6 +26,7 @@ namespace Game
             }
             Console.Clear();
             Console.WriteLine("WOHO " +namn+ " du klara det");
+            Console.ReadKey();
         }
     }
 }
